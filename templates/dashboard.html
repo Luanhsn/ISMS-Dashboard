@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>ISMS Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #f4f6f8;
+        }
+
+        .navbar {
+            background: #1f2937;
+            color: white;
+            padding: 15px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .metric {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .high { color: red; }
+        .medium { color: orange; }
+        .low { color: green; }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>ISMS Security Dashboard</h2>
+</div>
+
+<div class="container">
+
+    <div class="grid">
+        <div class="metric">
+            <h3>Total Risks</h3>
+            <p>12</p>
+        </div>
+
+        <div class="metric">
+            <h3>High Risks</h3>
+            <p class="high">3</p>
+        </div>
+
+        <div class="metric">
+            <h3>Open Measures</h3>
+            <p class="medium">5</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>System Status</h3>
+        <p>ISMS Monitoring active – No critical alerts</p>
+    </div>
+
+</div>
+
+</body>
+</html>
