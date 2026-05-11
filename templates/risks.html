@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>ISMS - Risk Management</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #f4f6f8;
+        }
+
+        .navbar {
+            background: #1f2937;
+            color: white;
+            padding: 15px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #e5e7eb;
+        }
+
+        .high {
+            color: red;
+            font-weight: bold;
+        }
+
+        .medium {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .low {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>Risk Management (ISMS)</h2>
+</div>
+
+<div class="container">
+
+    <a class="button" href="/">← Back to Dashboard</a>
+
+    <table>
+        <tr>
+            <th>Risk</th>
+            <th>Description</th>
+            <th>Score</th>
+            <th>Status</th>
+        </tr>
+
+        <tr>
+            <td>Brute Force Attack</td>
+            <td>Repeated SSH login attempts</td>
+            <td class="high">20</td>
+            <td>Open</td>
+        </tr>
+
+        <tr>
+            <td>Weak Password Policy</td>
+            <td>No password complexity rules</td>
+            <td class="medium">12</td>
+            <td>In Progress</td>
+        </tr>
+
+        <tr>
+            <td>Unpatched System</td>
+            <td>Outdated Linux kernel vulnerabilities</td>
+            <td class="high">18</td>
+            <td>Open</td>
+        </tr>
+
+        <tr>
+            <td>Phishing Risk</td>
+            <td>Users not trained for phishing attacks</td>
+            <td class="low">6</td>
+            <td>Mitigated</td>
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>
