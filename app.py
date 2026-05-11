@@ -6,6 +6,7 @@ app = Flask(__name__)
 def dashboard():
     return render_template("dashboard.html")
 
+@app.route("/risks")
 def risks():
     return render_template("risks.html")
 
