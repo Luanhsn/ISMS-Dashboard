@@ -85,45 +85,16 @@
         <th>Status</th>
     </tr>
 
+    {% for risk in risks %}
     <tr>
-        <td>Brute Force Attack</td>
-        <td>Multiple failed SSH login attempts detected.</td>
-        <td>Authentication</td>
-        <td class="high">20</td>
-        <td>Open</td>
+        <td>{{ risk.name }}</td>
+        <td>{{ risk.description }}</td>
+        <td>{{ risk.category }}</td>
+        <td>{{ risk.score }}</td>
+        <td>{{ risk.status }}</td>
     </tr>
+    {% endfor %}
 
-    <tr>
-        <td>Weak Password Policy</td>
-        <td>Passwords do not meet complexity requirements.</td>
-        <td>Authentication</td>
-        <td class="medium">15</td>
-        <td>In Progress</td>
-    </tr>
-
-    <tr>
-        <td>Missing MFA</td>
-        <td>Multi-factor authentication is not enabled.</td>
-        <td>Identity Security</td>
-        <td class="medium">12</td>
-        <td>Open</td>
-    </tr>
-
-    <tr>
-        <td>Unpatched Linux System</td>
-        <td>System packages are outdated and vulnerable.</td>
-        <td>System Security</td>
-        <td class="high">18</td>
-        <td>Open</td>
-    </tr>
-
-    <tr>
-        <td>Phishing Risk</td>
-        <td>Employees are not trained against phishing attacks.</td>
-        <td>Awareness</td>
-        <td class="low">6</td>
-        <td>Mitigated</td>
-    </tr>
 
 </table>
 
