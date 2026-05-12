@@ -52,6 +52,13 @@ def risks():
     print(risks_data)
     return render_template("risks.html", risks=risks_data)
 
+@app.route("/scan", methods=["POST"])
+def scan():
+    target = "192.168.222.137"
+    nm = nmap.PortScanner()
+    nm.scan(hosts=target, arguments="-sV --open")
+
+    risks_data.clear()
 
 
 
