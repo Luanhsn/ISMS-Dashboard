@@ -77,42 +77,55 @@
     <a class="button" href="/">← Back to Dashboard</a>
 
     <table>
-        <tr>
-            <th>Risk</th>
-            <th>Description</th>
-            <th>Score</th>
-            <th>Status</th>
-        </tr>
+    <tr>
+        <th>Risk</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Score</th>
+        <th>Status</th>
+    </tr>
 
-        <tr>
-            <td>Brute Force Attack</td>
-            <td>Repeated SSH login attempts</td>
-            <td class="high">20</td>
-            <td>Open</td>
-        </tr>
+    <tr>
+        <td>Brute Force Attack</td>
+        <td>Multiple failed SSH login attempts detected.</td>
+        <td>Authentication</td>
+        <td class="high">20</td>
+        <td>Open</td>
+    </tr>
 
-        <tr>
-            <td>Weak Password Policy</td>
-            <td>No password complexity rules</td>
-            <td class="medium">12</td>
-            <td>In Progress</td>
-        </tr>
+    <tr>
+        <td>Weak Password Policy</td>
+        <td>Passwords do not meet complexity requirements.</td>
+        <td>Authentication</td>
+        <td class="medium">15</td>
+        <td>In Progress</td>
+    </tr>
 
-        <tr>
-            <td>Unpatched System</td>
-            <td>Outdated Linux kernel vulnerabilities</td>
-            <td class="high">18</td>
-            <td>Open</td>
-        </tr>
+    <tr>
+        <td>Missing MFA</td>
+        <td>Multi-factor authentication is not enabled.</td>
+        <td>Identity Security</td>
+        <td class="medium">12</td>
+        <td>Open</td>
+    </tr>
 
-        <tr>
-            <td>Phishing Risk</td>
-            <td>Users not trained for phishing attacks</td>
-            <td class="low">6</td>
-            <td>Mitigated</td>
-        </tr>
+    <tr>
+        <td>Unpatched Linux System</td>
+        <td>System packages are outdated and vulnerable.</td>
+        <td>System Security</td>
+        <td class="high">18</td>
+        <td>Open</td>
+    </tr>
 
-    </table>
+    <tr>
+        <td>Phishing Risk</td>
+        <td>Employees are not trained against phishing attacks.</td>
+        <td>Awareness</td>
+        <td class="low">6</td>
+        <td>Mitigated</td>
+    </tr>
+
+</table>
 
 </div>
 
