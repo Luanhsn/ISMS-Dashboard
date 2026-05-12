@@ -41,11 +41,11 @@ def calculate_risk_level(score):
 
 @app.route("/")
 def dashboard():
-    return render_template("dashboard.html")
     total = len(risks_data)
     critical = sum(1 for r in risks_data if r["status_level"] == "Critical")
     high = sum(1 for r in risks_data if r["status_level"] == "High")
     medium = sum(1 for r in risks_data if r["status_level"] == "Medium")
+    return render_template("dashboard.html", total=total, critical=critical, high=high, medium=medium)
 
 @app.route("/risks")
 def risks():
