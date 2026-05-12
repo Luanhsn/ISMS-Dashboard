@@ -27,14 +27,15 @@ PORT_KNOWLEDGE = {
     8180:{"name": "Tomcat",     "description": "Apache Tomcat Manager exposed",                             "category": "Web Security",   "likelihood": 4, "impact": 4},
 }
 
-    {
-        "name": "Missing MFA",
-        "description": "Multi-factor authentication is not enabled.",
-        "category": "Identity Security",
-        "score": 12,
-        "status": "Open"
-    }
-]
+def calculate_risk_level(score):
+    if score >= 20:
+        return "Critical"
+    elif score >= 12:
+        return "High"
+    elif score >= 6:
+        return "Medium"
+    else:
+        return "Low"
 
 
 
