@@ -97,6 +97,12 @@
         <td>{{ risk.category }}</td>
         <td>{{ risk.score }}</td>
         <td>{{ risk.status }}</td>
+        <td>{{ risk.likelihood }}</td>
+        <td>{{ risk.impact }}</td>
+        <td class="{% if risk.status_level == 'Critical' %}high{% elif risk.status_level == 'High' %}medium{% elif risk.status_level == 'Medium' %}low{% endif %}">
+            {{ risk.status_level }}
+        </td>
+        <td>{{ risk.port }}</td>
     </tr>
     {% endfor %}
 
