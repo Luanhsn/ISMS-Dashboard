@@ -60,6 +60,43 @@ def scan():
 
     risks_data.clear()
 
+    for host in nm.all_hosts():
+        for proto in nm[host].all_protocols():
+            for port in nm[host][proto].keys():
+                state = nm[host][proto][port]["state"]
+                if state != "open":
+                    continue
+
+                if port in PORT_KNOWLEDGE:
+                    info = PORT_KNOWLEDGE[port]
+                    likelihood = info["likelihood"]
+                    impact = info["impact"]
+                    score = likelihood * impact
+                    risks_data.append({
+                        "name": info["name"],
+                        "description": info["description"],
+                        "category": info["category"],
+                        "port": port,
+                        "likelihood": likelihood,
+                        "impact": impact,
+                        "score": score,
+                        "status_level": calculate_risk_level(score),
+                        "status": "Open"
+                    })
+                else:
+                    risks_data.append({
+                        "name": "Unknown Service",
+                        "description": f"Port {port} open – no entry in knowledge base",
+                        "category": "Unknown",
+                        "port": port,
+                        "likelihood": 2,
+                        "impact": 2,
+                        "score": 4,
+                        "status_level": "Low",
+                        "status": "Open"
+                    })
+
+    return redirect(url_for("risks"))
 
 
 if __name__ == "__main__":
