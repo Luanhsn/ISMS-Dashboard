@@ -2,14 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-risks_data = [
-    {
-        "name": "Brute Force Attack",
-        "description": "Multiple failed SSH login attempts detected.",
-        "category": "Authentication",
-        "score": 20,
-        "status": "Open"
-    },
+risks_data = []
 
 PORT_KNOWLEDGE = {
     21:  {"name": "FTP",        "description": "Outdated FTP service, known backdoor in vsftpd 2.3.4",     "category": "Network",        "likelihood": 5, "impact": 5},
