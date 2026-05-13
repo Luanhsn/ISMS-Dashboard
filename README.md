@@ -25,7 +25,7 @@ and classifies vulnerabilities based on ISO 27001 risk scoring.
 4. View discovered vulnerabilities with risk scores
 5. Track remediation status per vulnerability
 
-<img width="2533" height="1242" alt="screenshot png" src="https://github.com/user-attachments/assets/827f4d5b-34f7-47e4-9434-2e9e893d786f" />
+<img width="2537" height="1249" alt="screenshot" src="https://github.com/user-attachments/assets/75d9cc77-10d3-4adf-98db-d4249394047c" />
 
 ## Setup
 ```bash
