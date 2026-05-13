@@ -107,6 +107,8 @@ def update_status(index):
         risks_data[index]["status"] = "In Progress"
     elif risks_data[index]["status"] == "In Progress":
         risks_data[index]["status"] = "Resolved"
+    elif risks_data[index]["status"] == "Resolved":
+       risks_data[index]["status"] = "Open"
     return redirect(url_for("risks"))
 
 
