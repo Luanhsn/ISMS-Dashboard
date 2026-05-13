@@ -103,6 +103,19 @@
             {{ risk.status_level }}
         </td>
         <td>{{ risk.port }}</td>
+        <td>
+            <form method="POST" action="/update_status/{{ loop.index0 }}">
+                <button type="submit">
+                    {% if risk.status == 'Open' %}
+                        Mark In Progress
+                    {% elif risk.status == 'In Progress' %}
+                        Mark Resolved
+                    {% else %}
+                        Resolved
+                    {% endif %}
+                </button>
+            </form>
+        </td>
     </tr>
     {% endfor %}
 
