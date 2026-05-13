@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import nmap
+from dotenv import load_dotenv
+import os
 app = Flask(__name__)
 
 risks_data = []
@@ -52,9 +54,10 @@ def risks():
     print(risks_data)
     return render_template("risks.html", risks=risks_data)
 
+load_dotenv()
+target = os.getenv("TARGET")
 @app.route("/scan", methods=["POST"])
 def scan():
-    target = "192.168.222.137"
     nm = nmap.PortScanner()
     nm.scan(hosts=target, arguments="-sV --open")
 
