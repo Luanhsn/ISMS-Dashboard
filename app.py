@@ -98,6 +98,14 @@ def scan():
 
     return redirect(url_for("risks"))
 
+@app.route("/update_status/<int:index>", methods=["POST"])
+def update_status(index):
+    if risks_data[index]["status"] == "Open":
+        risks_data[index]["status"] = "In Progress"
+    elif risks_data[index]["status"] == "In Progress":
+        risks_data[index]["status"] = "Resolved"
+    return redirect(url_for("risks"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
