@@ -61,6 +61,10 @@ def scan():
     nm = nmap.PortScanner()
     nm.scan(hosts=target, arguments="-sV --open")
 
+    old_status = {}
+    for r in risks_data:
+        old_status[r["port"]] = r["status"]
+
     risks_data.clear()
 
     for host in nm.all_hosts():
@@ -84,7 +88,7 @@ def scan():
                         "impact": impact,
                         "score": score,
                         "status_level": calculate_risk_level(score),
-                        "status": "Open"
+                        "status": old_status.get(port, "Open")
                     })
                 else:
                     risks_data.append({
@@ -96,8 +100,24 @@ def scan():
                         "impact": 2,
                         "score": 4,
                         "status_level": "Low",
-                        "status": "Open"
+                        "status": old_status.get(port, "Open")
                     })
+
+    found_ports = {p["port"] for p in risks_data}
+
+    for port, status in old_status.items():
+        if port not in found_ports:
+            risks_data.append({
+                "name": PORT_KNOWLEDGE[port]["name"] if port in PORT_KNOWLEDGE else "Unknown Service",
+                "description": "Port no longer detected – service closed",
+                "category": PORT_KNOWLEDGE[port]["category"] if port in PORT_KNOWLEDGE else "Closed",
+                "port": port,
+                "likelihood": 0,
+                "impact": 0,
+                "score": 0,
+                "status_level": "Resolved",
+                "status": "Resolved"
+            })
 
     return redirect(url_for("risks"))
 
@@ -107,8 +127,6 @@ def update_status(index):
         risks_data[index]["status"] = "In Progress"
     elif risks_data[index]["status"] == "In Progress":
         risks_data[index]["status"] = "Resolved"
-    elif risks_data[index]["status"] == "Resolved":
-       risks_data[index]["status"] = "Open"
     return redirect(url_for("risks"))
 
 
