@@ -33,3 +33,5 @@ and classifies vulnerabilities based on ISO 27001 risk scoring.
 pip install -r requirements.txt
 flask run
 ```
+
+<img width="2533" height="1242" alt="screenshot png" src="https://github.com/user-attachments/assets/827f4d5b-34f7-47e4-9434-2e9e893d786f" />
