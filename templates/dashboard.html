@@ -89,6 +89,20 @@
         <p>ISMS Monitoring active – No critical alerts</p>
     </div>
 
+    <script>
+        const ctx = document.getElementById("riskChart");
+        new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: ["Critical", "High", "Medium"],
+                datasets: [{
+                    data: [{{ critical }}, {{ high }}, {{ medium }}],
+                    backgroundColor: ["red", "orange", "green"]
+                }]
+            }
+        });
+    </script>
+
 </div>
 
 </body>
