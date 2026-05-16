@@ -57,8 +57,6 @@ def risks():
     print(risks_data)
     return render_template("risks.html", risks=risks_data)
 
-load_dotenv()
-target = os.getenv("TARGET")
 @app.route("/scan", methods=["POST"])
 def scan():
     nm = nmap.PortScanner()
