@@ -52,6 +52,13 @@
             margin-bottom: 15px;
         }
 
+        button.button {
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+        }
+
         .high { color: red; }
         .medium { color: orange; }
         .low { color: green; }
@@ -66,7 +73,12 @@
 
 <div class="container">
 
-    <a class="button" href="/risks">View Risks</a>
+    <div style="display: flex; gap: 10px;">
+        <a class="button" href="/risks">View Risks</a>
+        <form action="/scan" method="POST">
+            <button type="submit" class="button">Scan</button>
+        </form>
+    </div>
 
     <div class="grid">
         <div class="metric">
