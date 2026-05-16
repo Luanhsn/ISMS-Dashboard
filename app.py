@@ -4,6 +4,9 @@ from dotenv import load_dotenv
 import os
 app = Flask(__name__)
 
+load_dotenv()
+target = os.getenv("TARGET")
+
 risks_data = []
 
 PORT_KNOWLEDGE = {
