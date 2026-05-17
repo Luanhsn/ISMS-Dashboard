@@ -139,16 +139,24 @@ def update_status(index):
     return redirect(url_for("risks"))
 
 def get_cves(service_name):
-    response = requests.get(
-        "https://services.nvd.nist.gov/rest/json/cves/2.0",
-        params={"keywordSearch": service_name},
-        headers={"apiKey": nvd_api_key}
-    )
-    data = response.json()
-    cves = []
-    for x in data["vulnerabilities"]:
-        cves.append(x["cve"]["id"])
-    return cves
+    try:
+        response = requests.get(
+            "https://services.nvd.nist.gov/rest/json/cves/2.0",
+            params={"keywordSearch": service_name},
+            headers={"apiKey": nvd_api_key},
+            timeout=5
+        )
+        response.raise_for_status()
+        data = response.json()
+        cves = []
+        if "vulnerabilities" in data:
+            for x in data["vulnerabilities"]:
+                cves.append(x["cve"]["id"])
+            return cves
+        else:
+            return []
+    except requests.exceptions.HTTPError:
+        return []
 
 if __name__ == "__main__":
     app.run(debug=True)
