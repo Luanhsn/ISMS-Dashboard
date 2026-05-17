@@ -74,6 +74,10 @@ def scan():
         for proto in nm[host].all_protocols():
             for port in nm[host][proto].keys():
                 state = nm[host][proto][port]["state"]
+                product = nm[host][proto][port]["product"]
+                version = nm[host][proto][port]["version"]
+                service_name = product + " " + version
+                cves = get_cves(service_name)
                 if state != "open":
                     continue
 
@@ -91,7 +95,8 @@ def scan():
                         "impact": impact,
                         "score": score,
                         "status_level": calculate_risk_level(score),
-                        "status": old_status.get(port, "Open")
+                        "status": old_status.get(port, "Open"),
+                        "cves": cves
                     })
                 else:
                     risks_data.append({
@@ -103,7 +108,8 @@ def scan():
                         "impact": 2,
                         "score": 4,
                         "status_level": "Low",
-                        "status": old_status.get(port, "Open")
+                        "status": old_status.get(port, "Open"),
+                        "cves": []
                     })
 
     found_ports = {p["port"] for p in risks_data}
