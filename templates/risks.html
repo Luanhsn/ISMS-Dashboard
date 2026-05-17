@@ -93,6 +93,7 @@
         <th>Risk Level</th>
         <th>Port</th>
         <th>Action</th>
+        <th>CVEs</th>
     </tr>
 
     {% for risk in risks %}
@@ -121,9 +122,7 @@
                 </button>
             </form>
         </td>
-        <td>
-            {{ risk.cves }}
-        </td>
+        <td>{{ risk.cves }}</td>
     </tr>
     {% endfor %}
 
