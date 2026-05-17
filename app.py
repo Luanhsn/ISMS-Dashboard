@@ -152,7 +152,7 @@ def get_cves(service_name):
         if "vulnerabilities" in data:
             for x in data["vulnerabilities"]:
                 cves.append(x["cve"]["id"])
-            return cves
+            return cves[:5]
         else:
             return []
     except requests.exceptions.HTTPError:
