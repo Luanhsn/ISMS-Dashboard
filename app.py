@@ -128,7 +128,9 @@ def scan():
                 "status": "Resolved"
             })
 
-    return redirect(url_for("risks"))
+    template = request.form.get("redirect_to")
+    return redirect(url_for(template))
+
 
 @app.route("/update_status/<int:index>", methods=["POST"])
 def update_status(index):
