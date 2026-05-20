@@ -1,6 +1,5 @@
 # ISMS Risk Management Dashboard
 
-> Work in Progress – actively being developed
 
 A Flask-based security dashboard that scans a target server with Nmap 
 and classifies vulnerabilities based on ISO 27001 risk scoring.
@@ -26,6 +25,22 @@ and classifies vulnerabilities based on ISO 27001 risk scoring.
 3. Nmap scans the target server
 4. Vulnerabilities are classified with risk scores
 5. Track remediation status per vulnerability
+
+## Setup
+
+```bash
+# Clone repository
+git clone https://github.com/Luanhsn/ISMS-Dashboard.git
+cd ISMS-Dashboard
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start app
+flask run
+```
+
+Then open your browser at: `http://localhost:5000`
 
 <img width="2537" height="1249" alt="screenshot" src="https://github.com/user-attachments/assets/75d9cc77-10d3-4adf-98db-d4249394047c" />
 
