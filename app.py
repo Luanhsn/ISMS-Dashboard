@@ -1,8 +1,9 @@
 import requests
-from flask import Flask, render_template, request, redirect, url_for
 import nmap
-from dotenv import load_dotenv
 import os
+from flask import Flask, render_template, request, redirect, url_for
+from dotenv import load_dotenv
+from port_knowledge import PORT_KNOWLEDGE
 app = Flask(__name__)
 
 load_dotenv()
