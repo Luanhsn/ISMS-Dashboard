@@ -5,12 +5,14 @@
     <title>ISMS - Risk Management</title>
 
     <style>
+        /* Base layout */
         body {
             font-family: Arial;
             margin: 0;
             background: #f4f6f8;
         }
 
+        /* Top navigation bar */
         .navbar {
             background: #1f2937;
             color: white;
@@ -21,6 +23,7 @@
             padding: 20px;
         }
 
+        /* Shared button style */
         .button {
             display: inline-block;
             padding: 10px 15px;
@@ -31,6 +34,7 @@
             margin-bottom: 15px;
         }
 
+        /* Risk table styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -49,6 +53,7 @@
             background: #e5e7eb;
         }
 
+        /* Risk level color coding */
         .high {
             color: red;
             font-weight: bold;
@@ -76,12 +81,13 @@
 
     <a class="button" href="/">← Back to Dashboard</a>
 
+    <!-- Scan button — redirects back to dashboard after scan -->
     <form method="POST" action="/scan">
         <input type="hidden" name="redirect_to" value="dashboard">
         <button type="submit">Scan</button>
     </form>
 
-
+    <!-- Table listing all detected risks from risks_data -->
     <table>
     <tr>
         <th>Risk</th>
@@ -97,6 +103,7 @@
         <th>CVEs</th>
     </tr>
 
+    <!-- Loop through each risk and render a table row -->
     {% for risk in risks %}
     <tr>
         <td>{{ risk.name }}</td>
@@ -106,10 +113,12 @@
         <td>{{ risk.status }}</td>
         <td>{{ risk.likelihood }}</td>
         <td>{{ risk.impact }}</td>
+        <!-- Apply color class based on risk level -->
         <td class="{% if risk.status_level == 'Critical' %}high{% elif risk.status_level == 'High' %}medium{% elif risk.status_level == 'Medium' %}low{% endif %}">
             {{ risk.status_level }}
         </td>
         <td>{{ risk.port }}</td>
+        <!-- Status update button cycles: Open → In Progress → Resolved -->
         <td>
             <form method="POST" action="/update_status/{{ loop.index0 }}">
                 <button type="submit">
@@ -126,7 +135,6 @@
         <td>{{ risk.cves }}</td>
     </tr>
     {% endfor %}
-
 
 </table>
 
