@@ -42,6 +42,40 @@ def get_cves(service_name):
     except requests.exceptions.HTTPError:
         return []
 
+def build_risk_entry(port, old_status, cves):
+    if port in PORT_KNOWLEDGE:
+        info = PORT_KNOWLEDGE[port]
+        likelihood = info["likelihood"]
+        impact = info["impact"]
+        score = likelihood * impact
+        entry = {
+            "name": info["name"],
+            "description": info["description"],
+            "category": info["category"],
+            "port": port,
+            "likelihood": likelihood,
+            "impact": impact,
+            "score": score,
+            "status_level": calculate_risk_level(score),
+            "status": old_status.get(port, "Open"),
+            "cves": cves
+        }
+    else:
+        entry = {
+            "name": "Unknown Service",
+            "description": f"Port {port} open – no entry in knowledge base",
+            "category": "Unknown",
+            "port": port,
+            "likelihood": 2,
+            "impact": 2,
+            "score": 4,
+            "status_level": "Low",
+            "status": old_status.get(port, "Open"),
+            "cves": []
+            }
+
+    return entry
+
 @app.route("/")
 def dashboard():
     total = len(risks_data)
@@ -76,36 +110,7 @@ def scan():
                 if state != "open":
                     continue
 
-                if port in PORT_KNOWLEDGE:
-                    info = PORT_KNOWLEDGE[port]
-                    likelihood = info["likelihood"]
-                    impact = info["impact"]
-                    score = likelihood * impact
-                    risks_data.append({
-                        "name": info["name"],
-                        "description": info["description"],
-                        "category": info["category"],
-                        "port": port,
-                        "likelihood": likelihood,
-                        "impact": impact,
-                        "score": score,
-                        "status_level": calculate_risk_level(score),
-                        "status": old_status.get(port, "Open"),
-                        "cves": cves
-                    })
-                else:
-                    risks_data.append({
-                        "name": "Unknown Service",
-                        "description": f"Port {port} open – no entry in knowledge base",
-                        "category": "Unknown",
-                        "port": port,
-                        "likelihood": 2,
-                        "impact": 2,
-                        "score": 4,
-                        "status_level": "Low",
-                        "status": old_status.get(port, "Open"),
-                        "cves": []
-                    })
+                risks_data.append(build_risk_entry(port, old_status, cves)) 
 
     found_ports = {p["port"] for p in risks_data}
 
