@@ -52,7 +52,6 @@ def dashboard():
 
 @app.route("/risks")
 def risks():
-    print(risks_data)
     return render_template("risks.html", risks=risks_data)
 
 @app.route("/scan", methods=["POST"])
@@ -110,7 +109,7 @@ def scan():
 
     found_ports = {p["port"] for p in risks_data}
 
-    for port, status in old_status.items():
+    for port in old_status:
         if port not in found_ports:
             risks_data.append({
                 "name": PORT_KNOWLEDGE[port]["name"] if port in PORT_KNOWLEDGE else "Unknown Service",
