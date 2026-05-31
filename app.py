@@ -4,6 +4,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
 from port_knowledge import PORT_KNOWLEDGE
+
 app = Flask(__name__)
 
 load_dotenv()
@@ -110,7 +111,7 @@ def scan():
                 if state != "open":
                     continue
 
-                risks_data.append(build_risk_entry(port, old_status, cves)) 
+                risks_data.append(build_risk_entry(port, old_status, cves))
 
     found_ports = {p["port"] for p in risks_data}
 
