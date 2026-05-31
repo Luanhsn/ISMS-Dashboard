@@ -22,7 +22,25 @@ def calculate_risk_level(score):
     else:
         return "Low"
 
-
+def get_cves(service_name):
+    try:
+        response = requests.get(
+            "https://services.nvd.nist.gov/rest/json/cves/2.0",
+            params={"keywordSearch": service_name},
+            headers={"apiKey": nvd_api_key},
+            timeout=5
+        )
+        response.raise_for_status()
+        data = response.json()
+        cves = []
+        if "vulnerabilities" in data:
+            for x in data["vulnerabilities"]:
+                cves.append(x["cve"]["id"])
+            return cves[:5]
+        else:
+            return []
+    except requests.exceptions.HTTPError:
+        return []
 
 @app.route("/")
 def dashboard():
